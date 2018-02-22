@@ -188,11 +188,11 @@ class Home extends React.Component {
                 <List>
                   {this.state.savedArticles.map(article => (
                     <ListItem key={article._id}>
-                      <Link to={"/articles/" + article._id}>
+                      <a href={article.url}>
                         <strong>
-                          {article.title} by {article.author}
+                          {article.title}
                         </strong>
-                      </Link>
+                      </a>
                       <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
                     </ListItem>
                   ))}
