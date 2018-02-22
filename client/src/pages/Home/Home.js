@@ -115,7 +115,7 @@ class Home extends React.Component {
                       value={this.state.startDate}
                       onChange={this.handleInputChange}
                       name="startDate"
-                      placeholder="Start Date (YYYY-MM-DD)"
+                      placeholder="Start Date (YYYYMMDD)"
                     />
 										{/* <div className="form-group">
 											<div className='input-group date' id='startDate'>
@@ -133,7 +133,7 @@ class Home extends React.Component {
                       value={this.state.endDate}
                       onChange={this.handleInputChange}
                       name="endDate"
-                      placeholder="End Date (YYYY-MM-DD)"
+                      placeholder="End Date (YYYYMMDD)"
                     />
 										{/* <div class="form-group">
 											<div class='input-group date' id='endDate'>
