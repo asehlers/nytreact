@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import DeleteBtn from "../../components/DeleteBtn";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import SaveBtn from "../../components/SaveBtn";
-class NYTSearch extends React.Component {
+
+class Home extends React.Component {
   state = {
     articles: [],
     savedArticles: [],
@@ -156,18 +157,23 @@ class NYTSearch extends React.Component {
         </Row>
         <Row>
           <Col size="md-12">
-            <List>
-              {this.state.articles.map(article => (
-                <ListItem key={article._id}>
-                  <Link to={article.web_url}>
-                    <strong>
-                      {article.headline.main}
-                    </strong>
-                  </Link>
-                  <SaveBtn onClick={() => this.saveArticle(article._id)} />
-                </ListItem>
-              ))}
-            </List>
+            <div className="panel panel-default">
+              <div className="panel-heading">NYT Articles</div>
+              <div className="panel-body">
+                <List>
+                  {this.state.articles.map(article => (
+                    <ListItem key={article._id}>
+                      <Link to={article.web_url}>
+                        <strong>
+                          {article.headline.main}
+                        </strong>
+                      </Link>
+                      <SaveBtn onClick={() => this.saveArticle(article._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            </div> 
           </Col>
         </Row>
         <Row>
@@ -191,7 +197,7 @@ class NYTSearch extends React.Component {
   }
 }
 
-export default NYTSearch;
+export default Home;
 
 // <form>
 //               <Input

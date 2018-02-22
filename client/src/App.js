@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
-import NYTSearch from "./pages/NYTSearch";
+import Home from "./pages/Home";
 import Nav from "./components/Nav";
 import './App.css';
 
@@ -12,7 +12,7 @@ class App extends Component {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={NYTSearch} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/save" component={NoMatch} />
           <Route component={NoMatch} />
         </Switch>
