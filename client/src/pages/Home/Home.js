@@ -51,6 +51,7 @@ class Home extends React.Component {
     API.deleteArticle(id)
       .then(res => this.loadArticles())
       .catch(err => console.log(err));
+    this.loadSavedArticles();
   };
 
   handleInputChange = event => {
@@ -62,15 +63,18 @@ class Home extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    let params = {
+      'api-key': "02ed5026ddea4edeb44e54a9f864ce1e",
+      q: this.state.keyword
+    }
+    if(this.state.startDate !== ""){
+      params.begin_date = this.state.startDate;
+    }
+    if(this.state.endDate !== ""){
+      params.end_date = this.state.endDate
+    }
     if (this.state.keyword) {
-      API.populateArticles(this.state.queryURL, {
-        params: {
-          'api-key': "02ed5026ddea4edeb44e54a9f864ce1e",
-          q: this.state.keyword,
-          // date: this.state.startDate,
-          // synopsis: this.state.endDate
-        }
-      })
+      API.populateArticles(this.state.queryURL, { params })
         .then(res => {
           console.log(res.data.response.docs)
           this.loadArticles(res)
@@ -178,18 +182,23 @@ class Home extends React.Component {
         </Row>
         <Row>
           <Col size="md-12">
-            <List>
-              {this.state.savedArticles.map(article => (
-                <ListItem key={article._id}>
-                  <Link to={"/articles/" + article._id}>
-                    <strong>
-                      {article.title} by {article.author}
-                    </strong>
-                  </Link>
-                  <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
-                </ListItem>
-              ))}
-            </List>
+            <div className="panel panel-default">
+              <div className="panel-heading">NYT Articles</div>
+              <div className="panel-body">
+                <List>
+                  {this.state.savedArticles.map(article => (
+                    <ListItem key={article._id}>
+                      <Link to={"/articles/" + article._id}>
+                        <strong>
+                          {article.title} by {article.author}
+                        </strong>
+                      </Link>
+                      <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            </div>
           </Col>
         </Row>
       </Container>
